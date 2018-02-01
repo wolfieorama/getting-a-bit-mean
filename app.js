@@ -4,6 +4,19 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const config = require('./config/database');
+
+// connecting Mongo
+mongoose.connect(config.database);
+
+//test db connection
+mongoose.connection.on('connected', () => {
+  console.log("connected to Mongo DB: " + config.database);
+});
+
+mongoose.connection.on('error', (err) => {
+  console.log("DB not connected coz of : " + err);
+});
 
 const app = express();
 const users = require('./routes/users');
