@@ -1,25 +1,19 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 
 // register
-router.get('/register', (req, res, next) => {
+router.post("/register", (req, res) => {
   res.send("register page");
 });
 
 // authenticate
-router.get('/authenticate', (req, res, next) => {
+router.get("/authenticate", (req, res) => {
   res.send("authenticate page");
 });
 
 // register
-router.get('/profile', (req, res, next) => {
+router.get("/profile", (req, res) => {
   res.send("profile page");
 });
-
-// validate route
-router.get('/validate', (req, res, next) => {
-  res.send("validate page");
-});
-
 module.exports = router;
