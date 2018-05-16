@@ -43,7 +43,7 @@ router.post("/authenticate", (req, res) => {
 
         res.json({
           success: true,
-          token: "JWT "+token,
+          token: "bearer "+token,
           user:{
             id: user._id,
             name: user.name,
@@ -59,7 +59,8 @@ router.post("/authenticate", (req, res) => {
 });
 
 // register
-router.get("/profile", (req, res) => {
-  res.send("profile page");
+router.get("/profile", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+  res.json({user: req.user});
 });
+
 module.exports = router;
